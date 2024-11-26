@@ -41,13 +41,13 @@ private:
     std::function<T(T)> processor_;
 };
 
-// 辅助函数，用于创建管道
+// Helper function to create a pipeline
 template<typename T>
 auto make_pipeline() {
     return Pipeline<T>::create();
 }
 
-// 并行管道执行器
+// Parallel pipeline executor
 template<typename... Pipelines>
 class ParallelPipeline {
 public:
@@ -67,7 +67,7 @@ private:
     std::tuple<Pipelines...> pipelines_;
 };
 
-// 创建并行管道的辅助函数
+// Helper function to create parallel pipeline
 template<typename... Pipelines>
 auto parallel(Pipelines&&... pipes) {
     return ParallelPipeline<std::remove_reference_t<Pipelines>...>(
